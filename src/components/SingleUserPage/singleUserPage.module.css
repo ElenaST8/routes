@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Hepta+Slab:wght@600&display=swap");
+
+.userInf {
+  width: 500px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: "Hepta Slab", serif;
+  text-align: center;
+  text-decoration: underline;
+}
+
+span {
+  font-style: italic;
+  font-weight: bold;
+}

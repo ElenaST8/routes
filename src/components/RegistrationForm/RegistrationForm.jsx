@@ -8,7 +8,10 @@ import { UsersContext } from "../../App";
 
 import { v4 as getUniqueId } from "uuid";
 
+import { useNavigate } from "react-router-dom";
+
 import styles from "./registrationForm.module.css";
+import { HOME_PATH, REF_PATH } from "../../constants/routes-links";
 
 const DEFAULT_USERS = [
   {
@@ -50,6 +53,8 @@ const RegistrationForm = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState();
 
+  const navigator = useNavigate();
+
   setUsersCount(users.length);
 
   // changeFunction(users.length);
@@ -62,6 +67,8 @@ const RegistrationForm = () => {
   const [surname, setSurname] = useState();
   const [email, setEmail] = useState();
   const [err, setErr] = useState(false);
+
+  const maxUsers = 6;
 
   const onAddUser = () => {
     const user = {
@@ -84,6 +91,10 @@ const RegistrationForm = () => {
   const leftSideClassName = classNames(styles["left-side"], {
     [styles["border-red"]]: err,
   });
+
+  if (users.length + 1 > maxUsers) {
+    navigator(REF_PATH);
+  }
 
   console.log(leftSideClassName);
 
@@ -165,6 +176,15 @@ const RegistrationForm = () => {
             Add User
           </button>
         )}
+        <button
+          type="button"
+          onClick={() => {
+            navigator(HOME_PATH);
+          }}
+          className={styles["add-user-button"]}
+        >
+          Link to homepage
+        </button>
       </div>
       <div className={styles["right-side"]}>
         <div className={styles["users-list"]}>
